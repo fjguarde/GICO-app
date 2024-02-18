@@ -10,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-list-page.component.scss']
 })
 export class UserListPageComponent {
+  public readonly userList = [
+    {id: 1, firstName: 'Fabian', lastName: 'Perez', email: 'fperez@gmail.com'},
+    {id: 2, firstName: 'Cesar', lastName: 'Pereira', email: 'cp@gmail.com'},
+  ]
 
 }
