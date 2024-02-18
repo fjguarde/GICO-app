@@ -1,23 +1,49 @@
 <div class="flex justify-content-center">
   <form *ngIf="formGroup" class="formgrid" [formGroup]="formGroup">
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
-        <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="id" >User ID</label>
-        <input class="col col-12 lg:col-6 md:col-6 sm:col-12" type="number" formControlName="id">
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="id"
+        >User ID</label
+      >
+      <input
+        class="col col-12 lg:col-6 md:col-6 sm:col-12"
+        type="number"
+        formControlName="id"
+      />
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
-        <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="firstName">Firs Name</label>
-        <input class="col col-12 lg:col-6 md:col-6 sm:col-12" type="text" formControlName="firstName">
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="firstName"
+        >Firs Name</label
+      >
+      <input
+        class="col col-12 lg:col-6 md:col-6 sm:col-12"
+        type="text"
+        formControlName="firstName"
+      />
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
-        <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="lastName">Last Name</label>
-        <input class="col col-12 lg:col-6 md:col-6 sm:col-12" type="text" formControlName="lastName">
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="lastName"
+        >Last Name</label
+      >
+      <input
+        class="col col-12 lg:col-6 md:col-6 sm:col-12"
+        type="text"
+        formControlName="lastName"
+      />
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
-        <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="email">Email</label>
-        <input class="col col-12 lg:col-6 md:col-6 sm:col-12" type="email" formControlName="email">
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="email"
+        >Email</label
+      >
+      <input
+        class="col col-12 lg:col-6 md:col-6 sm:col-12"
+        type="email"
+        formControlName="email"
+      />
     </div>
     <div class="flex justify-content-center">
-        <button type="submit" (click)="addUser(formGroup)">ADD</button>
-      </div>
-</form>
+      <button class="primary-button" type="submit" (click)="addUser(formGroup)">
+        ADD
+      </button>
+    </div>
+  </form>
 </div>
