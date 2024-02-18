@@ -1,20 +1,45 @@
-
-<p-table [value]="users" styleClass="p-datatable-gridlines"
-    [tableStyle]="{ 'min-width': '30rem', 'max-width': '50rem' }">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Id</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td>{{ user.email }}</td>
-        </tr>
-    </ng-template>
+<p-table
+  [value]="users"
+  styleClass="p-datatable-gridlines"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [breakpoint]="'850px'"
+  responsiveLayout="stack"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td [frozen]="true" alignFrozen="right" pFrozenColumn>
+        <button
+          (click)="
+            buttonAction.next({
+              action: 'edit',
+              value: $any(user.id)
+            })
+          "
+          aria-label="action-button"
+          class="p-button-rounded p-button-text"
+          pButton
+          pRipple
+          pTooltip="'Edit'"
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-text"
+          styleClass="p-button-sm"
+          tooltipPosition="bottom"
+          type="button"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
 </p-table>

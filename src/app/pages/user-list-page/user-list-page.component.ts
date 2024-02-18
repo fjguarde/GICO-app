@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [UsersTableComponent, UsersFormComponent, HttpClientModule],
   providers: [UsersService],
   templateUrl: './user-list-page.component.html',
-  styleUrls: ['./user-list-page.component.scss']
+  styleUrls: ['./user-list-page.component.scss'],
 })
 export class UserListPageComponent implements OnInit {
   public userList: User[] = [];
@@ -23,15 +23,19 @@ export class UserListPageComponent implements OnInit {
   }
 
   private getUsers(): void {
-    this.userService.getUsers()
-      .subscribe((users: User[])=> this.userList = users )
+    this.userService
+      .getUsers()
+      .subscribe((users: User[]) => (this.userList = users));
+  }
+
+  public onTableAction(action: { action: string; value: any }): void {
+    console.log(action);
   }
 
   public createUser(user: User): void {
-    this.userService.postUser(user)
-      .subscribe((userId)=> {
-        //Show toast
+    this.userService.postUser(user).subscribe((userId) => {
+      //Show toast
       this.getUsers();
-      })
+    });
   }
 }
