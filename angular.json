@@ -8,7 +8,8 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "standalone": true
+          "standalone": true,
+          "prefix": "gico"
         },
         "@schematics/angular:directive": {
           "standalone": true
