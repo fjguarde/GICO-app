@@ -1,1 +1,16 @@
-<p>users-form works!</p>
+<h1 class="character-list-title">Rick & Morty</h1>
+<div class="container">
+  <form *ngIf="formGroup" class="character-list-form" [formGroup]="formGroup">
+    <label for="name">User ID</label>
+    <input type="number" formControlName="id">
+    <label for="name">Firs Name</label>
+    <input type="text" formControlName="firstName">
+    <label for="name">Last Name</label>
+    <input type="text" formControlName="lastName">
+    <label for="name">Email</label>
+    <input type="email" formControlName="email">
+  </form>
+  <div>
+    <button type="submit" (click)="addUser(formGroup)">ADD</button>
+  </div>
+</div>

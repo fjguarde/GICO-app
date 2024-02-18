@@ -19,6 +19,19 @@ export class UserListPageComponent implements OnInit {
   constructor(private readonly userService: UsersService) {}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((users: User[])=> this.userList = users )
+    this.getUsers();
+  }
+
+  private getUsers(): void {
+    this.userService.getUsers()
+      .subscribe((users: User[])=> this.userList = users )
+  }
+
+  public createUser(user: User): void {
+    this.userService.postUser(user)
+      .subscribe((userId)=> {
+        //Show toast
+      this.getUsers();
+      })
   }
 }
