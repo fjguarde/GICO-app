@@ -1,3 +1,9 @@
-<h1>User List</h1>
-<gico-users-table [users]="userList"></gico-users-table>
-<gico-users-form (createUser)="createUser($event)"></gico-users-form>
+<div class="container">
+    <h1>User List</h1>
+    <div class="user-table">
+        <gico-users-table class="table-data" [users]="userList"></gico-users-table>
+    </div>
+    <div>
+        <gico-users-form (createUser)="createUser($event)"></gico-users-form>
+    </div>
+</div>
