@@ -39,6 +39,24 @@
           tooltipPosition="bottom"
           type="button"
         ></button>
+        <button
+          (click)="
+            buttonAction.next({
+              action: 'delete',
+              value: $any(user.id)
+            })
+          "
+          aria-label="action-button"
+          class="p-button-rounded p-button-text"
+          pButton
+          pRipple
+          pTooltip="'Delete'"
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-text"
+          styleClass="p-button-sm"
+          tooltipPosition="bottom"
+          type="button"
+        ></button>
       </td>
     </tr>
   </ng-template>
