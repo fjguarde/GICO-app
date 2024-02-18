@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: 'gico'
+    apiUrl: 'http://localhost:3000'
 };
