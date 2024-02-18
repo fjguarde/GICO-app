@@ -1,6 +1,28 @@
 {
-    "users": [
-    { "id": 1, "firstName": "Fabian", "lastName": "Perez", "email": "fperez@gmail.com"},
-    { "id": 2, "firstName": "Cesar", "lastName": "Pereira", "email": "cp@gmail.com"}
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Fabian",
+      "lastName": "Perez",
+      "email": "fperez@gmail.com"
+    },
+    {
+      "id": 2,
+      "firstName": "Cesar",
+      "lastName": "Pereira",
+      "email": "cp@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstName": "pepe",
+      "lastName": "guarde",
+      "email": "gugu@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstName": "pepe",
+      "lastName": "guarde",
+      "email": "gugu@gmail.com"
+    }
   ]
 }
