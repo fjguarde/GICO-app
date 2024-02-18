@@ -1,4 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-@import '~primeflex/primeflex.css';
+@import "~primeflex/primeflex.css";
+
+.primary-button {
+  width: 100%;
+  background: #2563eb;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 6px;
+  border-color: #2563eb;
+  font-size: 1.5rem;
+}
+
+.container {
+  margin: 2rem;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #eff3f8;
+}
