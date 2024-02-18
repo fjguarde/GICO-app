@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "GICO-user-app:build:production"
+              "buildTarget": "GICO-user-app:build:production"
             },
             "development": {
-              "browserTarget": "GICO-user-app:build:development"
+              "buildTarget": "GICO-user-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "GICO-user-app:build"
+            "buildTarget": "GICO-user-app:build"
           }
         },
         "test": {
