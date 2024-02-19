@@ -47,6 +47,6 @@ export class UserListPageComponent implements OnInit {
 
   private calculateNextId(userList: User[]): number {
     const sortedUsers = userList.slice().sort((a, b) => b.id - a.id);
-    return sortedUsers.length > 0 ? sortedUsers[0].id : 1;
+    return sortedUsers.length > 0 ? Number(sortedUsers[0].id) + 1 : 1;
   }
 }
