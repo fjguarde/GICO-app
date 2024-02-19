@@ -27,7 +27,10 @@
         }"
         formControlName="firstName"
       />
-      <div *ngIf="formGroup.touched && formGroup.get('firstName')?.errors">
+      <div
+        class="error"
+        *ngIf="formGroup.touched && formGroup.get('firstName')?.errors"
+      >
         First name require at least 3 characters
       </div>
     </div>
