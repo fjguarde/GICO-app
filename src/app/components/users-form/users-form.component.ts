@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { User } from '@models/user';
 import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
 
@@ -18,23 +23,28 @@ export class UsersFormComponent implements OnInit {
   public formGroup!: FormGroup;
   public editMode!: boolean;
 
-  constructor(private readonly fb: FormBuilder) {}
-
   ngOnInit(): void {
     this.formGroup = this.initializeFrom();
   }
 
   private initializeFrom(): FormGroup {
-    return this.fb.group({
-      id: [''],
-      firstName: [''],
-      lastName: [''],
-      email: [''],
+    return new FormGroup({
+      id: new FormControl(''),
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      lastName: new FormControl(''),
+      email: new FormControl(''),
     });
   }
 
   public addUser(formGroup: FormGroup): void {
-    this.createUser.emit(formGroup.getRawValue() as User);
-    this.formGroup = this.initializeFrom();
+    if (formGroup.valid) {
+      this.createUser.emit(formGroup.getRawValue() as User);
+      this.formGroup = this.initializeFrom();
+    } else {
+      this.formGroup.markAllAsTouched();
+    }
   }
 }
