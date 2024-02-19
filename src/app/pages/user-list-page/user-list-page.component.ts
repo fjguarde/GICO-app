@@ -69,7 +69,7 @@ export class UserListPageComponent implements OnInit {
   private deleteUser(value: string) {
     this.userService.deleteUserById(value).subscribe((userId) => {
       //Show toast
-      this.userService.getUsers();
+      this.getUsers();
     });
   }
 
