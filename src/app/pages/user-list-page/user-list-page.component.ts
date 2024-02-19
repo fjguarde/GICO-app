@@ -5,12 +5,22 @@ import { User } from 'src/app/models/user';
 import { UsersService } from '@services/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
+import { TableAction } from '@models/table-action';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'gico-user-list-page',
   standalone: true,
-  imports: [UsersTableComponent, UsersFormComponent, HttpClientModule],
-  providers: [UsersService],
+  imports: [
+    CommonModule,
+    UsersTableComponent,
+    UsersFormComponent,
+    HttpClientModule,
+    ConfirmDialogModule,
+  ],
+  providers: [UsersService, ConfirmationService],
   templateUrl: './user-list-page.component.html',
   styleUrls: ['./user-list-page.component.scss'],
 })
@@ -18,7 +28,10 @@ export class UserListPageComponent implements OnInit {
   public userList: User[] = [];
   public ACTION_TYPE = ACTION_TYPE;
 
-  constructor(private readonly userService: UsersService) {}
+  constructor(
+    private readonly userService: UsersService,
+    private readonly confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -30,8 +43,34 @@ export class UserListPageComponent implements OnInit {
       .subscribe((users: User[]) => (this.userList = users));
   }
 
-  public onTableAction(action: { action: string; value: any }): void {
-    console.log(action);
+  public onTableAction({ action, value }: TableAction): void {
+    switch (action) {
+      case 'delete':
+        this.confirmDelete(value);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  private confirmDelete(value: any): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Yes',
+      rejectLabel: 'No',
+      accept: () => this.deleteUser(value),
+      reject: () => console.log('no'),
+    });
+  }
+
+  private deleteUser(value: string) {
+    this.userService.deleteUserById(value).subscribe((userId) => {
+      //Show toast
+      this.userService.getUsers();
+    });
   }
 
   public createUser(user: User): void {
@@ -45,8 +84,10 @@ export class UserListPageComponent implements OnInit {
     });
   }
 
-  private calculateNextId(userList: User[]): number {
-    const sortedUsers = userList.slice().sort((a, b) => b.id - a.id);
-    return sortedUsers.length > 0 ? Number(sortedUsers[0].id) + 1 : 1;
+  private calculateNextId(userList: User[]): string {
+    const sortedUsers = userList
+      .slice()
+      .sort((a, b) => Number(b.id) - Number(a.id));
+    return sortedUsers.length > 0 ? String(Number(sortedUsers[0].id) + 1) : '1';
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TableAction } from '@models/table-action';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
@@ -13,5 +14,5 @@ const PRIME_NG_MODULES = [TableModule, TooltipModule, ButtonModule];
 })
 export class UsersTableComponent {
   @Input() users: User[] = [];
-  @Output() buttonAction = new EventEmitter<{ action: string; value: any }>();
+  @Output() buttonAction = new EventEmitter<TableAction>();
 }
