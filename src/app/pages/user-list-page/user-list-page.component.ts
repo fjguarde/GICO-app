@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UsersService } from '@services/users.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
 
 @Component({
   selector: 'gico-user-list-page',
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class UserListPageComponent implements OnInit {
   public userList: User[] = [];
+  public ACTION_TYPE = ACTION_TYPE;
 
   constructor(private readonly userService: UsersService) {}
 
@@ -33,9 +35,18 @@ export class UserListPageComponent implements OnInit {
   }
 
   public createUser(user: User): void {
-    this.userService.postUser(user).subscribe((userId) => {
+    const newUser = {
+      ...user,
+      id: this.calculateNextId(this.userList),
+    };
+    this.userService.postUser(newUser).subscribe((userId) => {
       //Show toast
       this.getUsers();
     });
+  }
+
+  private calculateNextId(userList: User[]): number {
+    const sortedUsers = userList.slice().sort((a, b) => b.id - a.id);
+    return sortedUsers.length > 0 ? sortedUsers[0].id : 1;
   }
 }

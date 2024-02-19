@@ -7,6 +7,9 @@
     ></gico-users-table>
   </div>
   <div>
-    <gico-users-form (createUser)="createUser($event)"></gico-users-form>
+    <gico-users-form
+      [mode]="ACTION_TYPE.CREATE"
+      (createUser)="createUser($event)"
+    ></gico-users-form>
   </div>
 </div>
