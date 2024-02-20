@@ -26,6 +26,7 @@ export class UsersFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.initializeFrom();
+    this.editMode = this.mode === ACTION_TYPE.EDIT;
   }
 
   private initializeFrom(): FormGroup {
