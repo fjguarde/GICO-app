@@ -11,6 +11,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserEditModalComponent } from '@components/user-edit-modal/user-edit-modal.component';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'gico-user-list-page',
@@ -85,6 +86,9 @@ export class UserListPageComponent implements OnInit {
       },
       data: {user}
   });
+  this.ref.onClose.pipe(take(1)).subscribe(()=> {
+    this.getUsers();
+  })
   }
 
   private deleteUser(value: string) {

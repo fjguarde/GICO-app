@@ -19,7 +19,9 @@ import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
 export class UsersFormComponent implements OnInit {
   @Input() mode!: ACTION_TYPE;
   @Input() user!: User;
-  @Output() createUser = new EventEmitter<User>();
+  @Output() userCreated = new EventEmitter<User>();
+  @Output() userEdited = new EventEmitter<User>();
+  @Output() onCancel = new EventEmitter<void>();
 
   public formGroup!: FormGroup;
   public editMode!: boolean;
@@ -42,12 +44,21 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
-  public addUser(formGroup: FormGroup): void {
+  public submit(formGroup: FormGroup): void {
     if (formGroup.valid) {
-      this.createUser.emit(formGroup.getRawValue() as User);
-      this.formGroup = this.initializeFrom();
+      const user = formGroup.getRawValue() as User
+      if (this.editMode) {
+        this.userEdited.emit(user);
+      }else {
+        this.userCreated.emit(user);
+        this.formGroup = this.initializeFrom();
+      }
     } else {
       this.formGroup.markAllAsTouched();
     }
+  }
+
+  public cancel(): void {
+    this.onCancel.emit()
   }
 }

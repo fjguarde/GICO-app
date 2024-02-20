@@ -27,4 +27,8 @@ export class UsersService {
   public postUser(user: User): Observable<number> {
     return this.http.post<number>(`${environment.apiUrl}/users`, user);
   }
+
+  public putUser(userId: string, user: User): Observable<number> {
+    return this.http.put<number>(`${environment.apiUrl}/users/${userId}`, user);
+  }
 }

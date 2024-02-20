@@ -1,3 +1,4 @@
+import { UsersService } from '@services/users.service';
 import { Component } from '@angular/core';
 import { UsersFormComponent } from '@components/users-form/users-form.component';
 import { User } from '@models/user';
@@ -16,10 +17,22 @@ export class UserEditModalComponent {
   public mode: ACTION_TYPE = ACTION_TYPE.EDIT;
 
   constructor(
-    public ref: DynamicDialogRef,
-    public config: DynamicDialogConfig
+    private readonly ref: DynamicDialogRef,
+    private readonly config: DynamicDialogConfig,
+    private readonly usersService: UsersService
     ) {
-      this.user = config.data?.user;
+      this.user = this.config.data?.user;
+    }
+
+    public editUser(user: User): void {
+      this.usersService.putUser(user.id, user).subscribe(()=> {
+        //show loading
+        this.closeModal()
+      })
+    }
+
+    public closeModal(): void {
+      this.ref.close()
     }
 
 }

@@ -55,8 +55,11 @@
       />
     </div>
     <div class="flex justify-content-center">
-      <button class="primary-button" type="submit" (click)="addUser(formGroup)">
-        ADD
+      <button *ngIf="editMode" class="primary-button" type="button" (click)="cancel()">
+        Cancel
+      </button>
+      <button class="primary-button" type="submit" (click)="submit(formGroup)">
+        Save
       </button>
     </div>
   </form>

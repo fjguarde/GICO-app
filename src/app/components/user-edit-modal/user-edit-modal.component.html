@@ -1,1 +1,6 @@
-<gico-users-form [user]="user" [mode]="mode"></gico-users-form>
+<gico-users-form
+    [user]="user"
+    [mode]="mode"
+    (userEdited)="editUser($event)"
+    (onCancel)="closeModal()">
+</gico-users-form>
