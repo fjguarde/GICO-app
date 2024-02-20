@@ -25,7 +25,7 @@
           (click)="
             buttonAction.next({
               action: 'edit',
-              value: $any(user.id)
+              user
             })
           "
           aria-label="action-button"
@@ -43,7 +43,7 @@
           (click)="
             buttonAction.next({
               action: 'delete',
-              value: $any(user.id)
+              user
             })
           "
           aria-label="action-button"

@@ -5,10 +5,11 @@ import { User } from 'src/app/models/user';
 import { UsersService } from '@services/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
-import { TableAction } from '@models/table-action';
+import { UserTableAction } from '@models/table-action';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'gico-user-list-page',
@@ -20,17 +21,19 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     ConfirmDialogModule,
   ],
-  providers: [UsersService, ConfirmationService],
+  providers: [UsersService, ConfirmationService, DialogService],
   templateUrl: './user-list-page.component.html',
   styleUrls: ['./user-list-page.component.scss'],
 })
 export class UserListPageComponent implements OnInit {
   public userList: User[] = [];
   public ACTION_TYPE = ACTION_TYPE;
+  private ref: DynamicDialogRef | undefined;
 
   constructor(
     private readonly userService: UsersService,
-    private readonly confirmationService: ConfirmationService
+    private readonly confirmationService: ConfirmationService,
+    private readonly dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -43,10 +46,13 @@ export class UserListPageComponent implements OnInit {
       .subscribe((users: User[]) => (this.userList = users));
   }
 
-  public onTableAction({ action, value }: TableAction): void {
+  public onTableAction({ action, user }: UserTableAction): void {
     switch (action) {
       case 'delete':
-        this.confirmDelete(value);
+        this.confirmDelete(user.id);
+        break;
+      case 'edit':
+        this.openModalEditUser(user);
         break;
 
       default:
@@ -64,6 +70,19 @@ export class UserListPageComponent implements OnInit {
       accept: () => this.deleteUser(value),
       reject: () => console.log('no'),
     });
+  }
+
+  private openModalEditUser(user: User) {
+    this.ref = this.dialogService.open(UsersFormComponent, {
+      header: 'Select a Product',
+      width: '50vw',
+      modal:true,
+      breakpoints: {
+          '960px': '75vw',
+          '640px': '90vw'
+      },
+      data: {user}
+  });
   }
 
   private deleteUser(value: string) {
