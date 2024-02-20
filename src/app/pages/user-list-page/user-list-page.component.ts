@@ -9,7 +9,8 @@ import { UserTableAction } from '@models/table-action';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserEditModalComponent } from '@components/user-edit-modal/user-edit-modal.component';
 
 @Component({
   selector: 'gico-user-list-page',
@@ -20,6 +21,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
     UsersFormComponent,
     HttpClientModule,
     ConfirmDialogModule,
+    DynamicDialogModule
   ],
   providers: [UsersService, ConfirmationService, DialogService],
   templateUrl: './user-list-page.component.html',
@@ -73,8 +75,8 @@ export class UserListPageComponent implements OnInit {
   }
 
   private openModalEditUser(user: User) {
-    this.ref = this.dialogService.open(UsersFormComponent, {
-      header: 'Select a Product',
+    this.ref = this.dialogService.open(UserEditModalComponent, {
+      header: `Edit user ${user.id}`,
       width: '50vw',
       modal:true,
       breakpoints: {

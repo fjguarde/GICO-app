@@ -18,6 +18,7 @@ import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
 })
 export class UsersFormComponent implements OnInit {
   @Input() mode!: ACTION_TYPE;
+  @Input() user!: User;
   @Output() createUser = new EventEmitter<User>();
 
   public formGroup!: FormGroup;
@@ -28,14 +29,15 @@ export class UsersFormComponent implements OnInit {
   }
 
   private initializeFrom(): FormGroup {
+    const {id, firstName, lastName, email} = this.user || {};
     return new FormGroup({
-      id: new FormControl(''),
-      firstName: new FormControl('', [
+      id: new FormControl(id ?? ''),
+      firstName: new FormControl(firstName ??'', [
         Validators.required,
         Validators.minLength(3),
       ]),
-      lastName: new FormControl(''),
-      email: new FormControl(''),
+      lastName: new FormControl(lastName ?? ''),
+      email: new FormControl(email ?? ''),
     });
   }
 
