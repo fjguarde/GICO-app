@@ -40,7 +40,7 @@ export class UsersFormComponent implements OnInit {
         Validators.minLength(3),
       ]),
       lastName: new FormControl(lastName ?? ''),
-      email: new FormControl(email ?? ''),
+      email: new FormControl(email ?? '', [Validators.email]),
     });
   }
 

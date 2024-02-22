@@ -53,9 +53,20 @@
         type="email"
         formControlName="email"
       />
+      <div
+        class="error"
+        *ngIf="formGroup.touched && formGroup.get('email')?.errors"
+      >
+        Invalid email format
+      </div>
     </div>
     <div class="flex justify-content-center">
-      <button *ngIf="editMode" class="primary-button" type="button" (click)="cancel()">
+      <button
+        *ngIf="editMode"
+        class="primary-button"
+        type="button"
+        (click)="cancel()"
+      >
         Cancel
       </button>
       <button class="primary-button" type="submit" (click)="submit(formGroup)">
