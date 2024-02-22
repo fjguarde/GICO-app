@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { User } from '@models/user';
 import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
+import { ErrorMessagesComponent } from '@components/error-messages/error-messages.component';
 
 @Component({
   selector: 'gico-users-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ErrorMessagesComponent],
   templateUrl: './users-form.component.html',
   styleUrls: ['./users-form.component.scss'],
 })
@@ -56,9 +57,14 @@ export class UsersFormComponent implements OnInit {
       firstName: new FormControl(firstName ??'', [
         Validators.required,
         Validators.minLength(3),
+        Validators.maxLength(15),
       ]),
-      lastName: new FormControl(lastName ?? ''),
-      email: new FormControl(email ?? '', [Validators.email]),
+      lastName: new FormControl(lastName ?? '', [
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ]),
+        
+        email: new FormControl(email ?? '', [Validators.email, Validators.maxLength(15) ]),
     });
   }
 }
