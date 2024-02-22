@@ -1,4 +1,4 @@
-<div class="flex justify-content-center flex-column">
+<div>
   <form *ngIf="formGroup" class="formgrid" [formGroup]="formGroup">
     <div
       *ngIf="editMode"
@@ -61,16 +61,17 @@
       </div>
     </div>
   </form>
-  <div class="flex justify-content-center">
+
+  <div class="buttons-right">
       <button
         *ngIf="editMode"
-        class="primary-button"
+        class="primary-button button"
         type="button"
         (click)="cancel()"
       >
         Cancel
       </button>
-      <button class="primary-button" type="submit" (click)="submit(formGroup)">
+      <button class="primary-button button" type="submit" (click)="submit(formGroup)">
         Save
       </button>
   </div>

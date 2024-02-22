@@ -1,0 +1,10 @@
+ 
+.buttons-right {
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+}
+
+.buttons-right button:first-child {
+    margin-right: 10px;
+}
