@@ -80,7 +80,7 @@ export class UserListPageComponent implements OnInit {
   private openModalEditUser(user: User) {
     this.ref = this.dialogService.open(UserEditModalComponent, {
       header: `Edit user ${user.id}`,
-      width: '50vw',
+      width: '30vw',
       modal:true,
       breakpoints: {
           '960px': '75vw',

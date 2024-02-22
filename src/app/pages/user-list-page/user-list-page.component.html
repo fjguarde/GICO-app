@@ -1,18 +1,18 @@
 <div class="container">
   <h1>User List</h1>
   <p-card>
-    <div class="user-table">
+    <div class="user-crud flex-column align-items-center">
       <gico-users-table
         [users]="userList"
         (buttonAction)="onTableAction($event)"
       ></gico-users-table>
-    </div>
     <div>
       <gico-users-form
         [mode]="ACTION_TYPE.CREATE"
         (onCreate)="createUser($event)"
       ></gico-users-form>
     </div>
+  </div>
   </p-card>
 </div>
 <p-confirmDialog></p-confirmDialog>

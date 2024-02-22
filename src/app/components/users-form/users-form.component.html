@@ -1,4 +1,4 @@
-<div class="flex justify-content-center">
+<div class="flex justify-content-center flex-column">
   <form *ngIf="formGroup" class="formgrid" [formGroup]="formGroup">
     <div
       *ngIf="editMode"
@@ -60,7 +60,8 @@
         Invalid email format
       </div>
     </div>
-    <div class="flex justify-content-center">
+  </form>
+  <div class="flex justify-content-center">
       <button
         *ngIf="editMode"
         class="primary-button"
@@ -72,6 +73,5 @@
       <button class="primary-button" type="submit" (click)="submit(formGroup)">
         Save
       </button>
-    </div>
-  </form>
+  </div>
 </div>
