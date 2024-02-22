@@ -5,6 +5,7 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { User } from 'src/app/models/user';
 const PRIME_NG_MODULES = [TableModule, TooltipModule, ButtonModule];
+
 @Component({
   selector: 'gico-users-table',
   standalone: true,

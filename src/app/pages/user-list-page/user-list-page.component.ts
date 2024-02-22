@@ -13,6 +13,7 @@ import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dy
 import { UserEditModalComponent } from '@components/user-edit-modal/user-edit-modal.component';
 import { take } from 'rxjs';
 import { CardModule } from 'primeng/card';
+const PRIME_NG_MODULES = [CardModule, DynamicDialogModule, ConfirmDialogModule];
 
 @Component({
   selector: 'gico-user-list-page',
@@ -22,9 +23,7 @@ import { CardModule } from 'primeng/card';
     UsersTableComponent,
     UsersFormComponent,
     HttpClientModule,
-    ConfirmDialogModule,
-    DynamicDialogModule,
-    CardModule
+    PRIME_NG_MODULES
   ],
   providers: [UsersService, ConfirmationService, DialogService],
   templateUrl: './user-list-page.component.html',
@@ -33,7 +32,7 @@ import { CardModule } from 'primeng/card';
 export class UserListPageComponent implements OnInit {
   public userList: User[] = [];
   public ACTION_TYPE = ACTION_TYPE;
-  private ref: DynamicDialogRef | undefined;
+  private ref!: DynamicDialogRef;
 
   constructor(
     private readonly userService: UsersService,
@@ -43,12 +42,6 @@ export class UserListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-  }
-
-  private getUsers(): void {
-    this.userService
-      .getUsers()
-      .subscribe((users: User[]) => (this.userList = users));
   }
 
   public onTableAction({ action, user }: UserTableAction): void {
@@ -65,6 +58,17 @@ export class UserListPageComponent implements OnInit {
     }
   }
 
+  public createUser(user: User): void {
+    const newUser = {
+      ...user,
+      id: this.calculateNextId(this.userList),
+    };
+    this.userService.postUser(newUser).subscribe((userId) => {
+      //Show toast
+      this.getUsers();
+    });
+  }
+
   private confirmDelete(value: any): void {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to proceed?',
@@ -75,6 +79,12 @@ export class UserListPageComponent implements OnInit {
       accept: () => this.deleteUser(value),
       reject: () => console.log('no'),
     });
+  }
+
+  private getUsers(): void {
+    this.userService
+      .getUsers()
+      .subscribe((users: User[]) => (this.userList = users));
   }
 
   private openModalEditUser(user: User) {
@@ -95,17 +105,6 @@ export class UserListPageComponent implements OnInit {
 
   private deleteUser(value: string) {
     this.userService.deleteUserById(value).subscribe((userId) => {
-      //Show toast
-      this.getUsers();
-    });
-  }
-
-  public createUser(user: User): void {
-    const newUser = {
-      ...user,
-      id: this.calculateNextId(this.userList),
-    };
-    this.userService.postUser(newUser).subscribe((userId) => {
       //Show toast
       this.getUsers();
     });

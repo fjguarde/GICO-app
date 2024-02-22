@@ -26,7 +26,6 @@ export class UserEditModalComponent {
 
     public editUser(user: User): void {
       this.usersService.putUser(user.id, user).subscribe(()=> {
-        //show loading
         this.closeModal()
       })
     }
