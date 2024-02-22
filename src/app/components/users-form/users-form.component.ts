@@ -64,7 +64,7 @@ export class UsersFormComponent implements OnInit {
         Validators.maxLength(15)
       ]),
         
-        email: new FormControl(email ?? '', [Validators.email, Validators.maxLength(15) ]),
+        email: new FormControl(email ?? '', [Validators.email, Validators.maxLength(30) ]),
     });
   }
 }
