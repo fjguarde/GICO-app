@@ -31,19 +31,6 @@ export class UsersFormComponent implements OnInit {
     this.editMode = this.mode === ACTION_TYPE.EDIT;
   }
 
-  private initializeFrom(): FormGroup {
-    const {id, firstName, lastName, email} = this.user || {};
-    return new FormGroup({
-      id: new FormControl(id ?? ''),
-      firstName: new FormControl(firstName ??'', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      lastName: new FormControl(lastName ?? ''),
-      email: new FormControl(email ?? '', [Validators.email]),
-    });
-  }
-
   public submit(formGroup: FormGroup): void {
     if (formGroup.valid) {
       const user = formGroup.getRawValue() as User
@@ -60,5 +47,18 @@ export class UsersFormComponent implements OnInit {
 
   public cancel(): void {
     this.onCancel.emit()
+  }
+
+  private initializeFrom(): FormGroup {
+    const {id, firstName, lastName, email} = this.user || {};
+    return new FormGroup({
+      id: new FormControl(id ?? ''),
+      firstName: new FormControl(firstName ??'', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      lastName: new FormControl(lastName ?? ''),
+      email: new FormControl(email ?? '', [Validators.email]),
+    });
   }
 }
