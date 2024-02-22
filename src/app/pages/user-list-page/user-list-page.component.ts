@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserEditModalComponent } from '@components/user-edit-modal/user-edit-modal.component';
 import { take } from 'rxjs';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'gico-user-list-page',
@@ -22,7 +23,8 @@ import { take } from 'rxjs';
     UsersFormComponent,
     HttpClientModule,
     ConfirmDialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    CardModule
   ],
   providers: [UsersService, ConfirmationService, DialogService],
   templateUrl: './user-list-page.component.html',
