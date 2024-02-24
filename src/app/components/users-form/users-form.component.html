@@ -27,7 +27,9 @@
         }"
         formControlName="firstName"
       />
-      <gico-error-messages [control]="formGroup.get('firstName')"></gico-error-messages>
+      <gico-error-messages
+        [control]="formGroup.get('firstName')"
+      ></gico-error-messages>
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
       <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="lastName"
@@ -38,7 +40,9 @@
         type="text"
         formControlName="lastName"
       />
-      <gico-error-messages [control]="formGroup.get('lastName')"></gico-error-messages>
+      <gico-error-messages
+        [control]="formGroup.get('lastName')"
+      ></gico-error-messages>
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
       <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="email"
@@ -49,21 +53,27 @@
         type="email"
         formControlName="email"
       />
-      <gico-error-messages [control]="formGroup.get('email')"></gico-error-messages>
+      <gico-error-messages
+        [control]="formGroup.get('email')"
+      ></gico-error-messages>
     </div>
   </form>
 
   <div class="buttons-right">
-      <button
-        *ngIf="editMode"
-        class="primary-button button"
-        type="button"
-        (click)="cancel()"
-      >
-        Cancel
-      </button>
-      <button class="primary-button button" type="submit" (click)="submit(formGroup)">
-        Save
-      </button>
+    <button
+      *ngIf="editMode"
+      class="p-button button button-raised button-text"
+      type="button"
+      (click)="cancel()"
+    >
+      <label> Cancel </label>
+    </button>
+    <button
+      class="primary-button button p-button button-raised"
+      type="submit"
+      (click)="submit(formGroup)"
+    >
+      <label>Save</label>
+    </button>
   </div>
 </div>

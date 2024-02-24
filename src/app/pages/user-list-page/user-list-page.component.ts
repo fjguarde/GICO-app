@@ -76,6 +76,8 @@ export class UserListPageComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Yes',
       rejectLabel: 'No',
+      rejectButtonStyleClass: 'p-button button button-raised button-text',
+      acceptButtonStyleClass: 'primary-button button p-button button-raised',
       accept: () => this.deleteUser(value),
       reject: () => console.log('no'),
     });

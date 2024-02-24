@@ -4,13 +4,32 @@
 @import "~primeflex/primeflex.css";
 @import "primeicons/primeicons.css";
 
+$primary-color: #2563eb;
+
 .primary-button {
-  background: #2563eb;
-  background-color: #2563eb;
+  background: $primary-color;
+  background-color: $primary-color;
   color: white;
   border-radius: 6px;
-  border-color: #2563eb;
-  font-size: 1.5rem;
+  border-color: $primary-color;
+  font-size: 1rem;
+}
+
+button.button-raised {
+  box-shadow: 0 3px 1px -2px #0003,0 2px #00000024,0 1px 5px #0000001f;
+}
+
+button.button-text {
+  background-color: transparent;
+  color: $primary-color;
+  border-color: transparent;
+  font-size: 1rem;
+}
+
+.button.button-text:not(:disabled):hover {
+  background: rgba(59, 130, 246, 0.04);
+  color: $primary-color;
+  border-color: transparent;
 }
 
 .container {
@@ -38,4 +57,9 @@ input[readonly] {
 
 form label {
   font-weight: bold;
+}
+
+button.button label {
+  font-weight: 700;
+  cursor: pointer;
 }
