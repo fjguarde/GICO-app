@@ -13,6 +13,7 @@ import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dy
 import { UserEditModalComponent } from '@components/user-edit-modal/user-edit-modal.component';
 import { take } from 'rxjs';
 import { CardModule } from 'primeng/card';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 const PRIME_NG_MODULES = [CardModule, DynamicDialogModule, ConfirmDialogModule];
 
 @Component({
@@ -20,10 +21,11 @@ const PRIME_NG_MODULES = [CardModule, DynamicDialogModule, ConfirmDialogModule];
   standalone: true,
   imports: [
     CommonModule,
+    PRIME_NG_MODULES,
     UsersTableComponent,
     UsersFormComponent,
     HttpClientModule,
-    PRIME_NG_MODULES
+    TranslateModule
   ],
   providers: [UsersService, ConfirmationService, DialogService],
   templateUrl: './user-list-page.component.html',
@@ -37,7 +39,8 @@ export class UserListPageComponent implements OnInit {
   constructor(
     private readonly userService: UsersService,
     private readonly confirmationService: ConfirmationService,
-    private readonly dialogService: DialogService
+    private readonly dialogService: DialogService,
+    private readonly translateService: TranslateService,
   ) {}
 
   ngOnInit(): void {
@@ -69,16 +72,16 @@ export class UserListPageComponent implements OnInit {
     });
   }
 
-  private confirmDelete(value: any): void {
+  private confirmDelete(id: string): void {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
+      message: this.translateService.instant('USERS.LIST.DELETE.CONFIRMATION').replace('#', id),
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptLabel: 'Yes',
-      rejectLabel: 'No',
+      acceptLabel: this.translateService.instant('COMMON.YES'),
+      rejectLabel: this.translateService.instant('COMMON.NO'),
       rejectButtonStyleClass: 'p-button button button-raised button-text',
       acceptButtonStyleClass: 'primary-button button p-button button-raised',
-      accept: () => this.deleteUser(value),
+      accept: () => this.deleteUser(id),
       reject: () => console.log('no'),
     });
   }

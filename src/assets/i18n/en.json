@@ -1,0 +1,39 @@
+{
+    "COMMON": {
+        "ACTIONS": "Actions",
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "ERROR_MESSAGES": {
+            "REQUIRED_FIELD": "Required Field",
+            "MINIMUM": "Minimum",
+            "MAXIMUM": "Maximum",
+            "CHARACTERS": "Characters",
+            "INVALID_FORMAT": "Invalid format"
+        },
+        "PAGE_NOT_FOUND": "Page not found",
+        "GO_HOME": "Go home",
+        "YES": "Yes",
+        "NO": "No"
+    },
+    "USERS": {
+        "LIST": {
+            "TITLE": "User list",
+            "ID": "Id",
+            "FIRST_NAME": "First name",
+            "LAST_NAME": "Last name",
+            "EMAIL": "Email",
+            "DELETE": {
+                "CONFIRMATION": "Are you sure that you want to delete the user #?"
+            } 
+        },
+        "FORM": {
+            "USER_ID": "User ID",
+            "FIRST_NAME": "First name",
+            "LAST_NAME": "Last name",
+            "EMAIL": "Email",
+            "EDIT": {
+                "TITLE": "Edit user"
+            }
+        }
+    }
+}

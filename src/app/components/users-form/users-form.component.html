@@ -4,9 +4,9 @@
       *ngIf="editMode"
       class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12"
     >
-      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="id"
-        >User ID</label
-      >
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="id">{{
+        "USERS.FORM.USER_ID" | translate
+      }}</label>
       <input
         class="col col-12 lg:col-6 md:col-6 sm:col-12"
         type="number"
@@ -15,9 +15,9 @@
       />
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
-      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="firstName"
-        >Firs Name</label
-      >
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="firstName">{{
+        "USERS.FORM.FIRST_NAME" | translate
+      }}</label>
       <input
         class="col col-12 lg:col-6 md:col-6 sm:col-12"
         type="text"
@@ -32,9 +32,9 @@
       ></gico-error-messages>
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
-      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="lastName"
-        >Last Name</label
-      >
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="lastName">{{
+        "USERS.FORM.LAST_NAME" | translate
+      }}</label>
       <input
         class="col col-12 lg:col-6 md:col-6 sm:col-12"
         type="text"
@@ -45,9 +45,9 @@
       ></gico-error-messages>
     </div>
     <div class="field mb-0 col col-12 lg:col-12 md:col-12 sm:col-12">
-      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="email"
-        >Email</label
-      >
+      <label class="col col-12 lg:col-6 md:col-6 sm:col-12" for="email">{{
+        "USERS.FORM.EMAIL" | translate
+      }}</label>
       <input
         class="col col-12 lg:col-6 md:col-6 sm:col-12"
         type="email"
@@ -66,14 +66,14 @@
       type="button"
       (click)="cancel()"
     >
-      <label> Cancel </label>
+      <label> {{ "COMMON.CANCEL" | translate }} </label>
     </button>
     <button
       class="primary-button button p-button button-raised"
       type="submit"
       (click)="submit(formGroup)"
     >
-      <label>Save</label>
+      <label>{{ "COMMON.SAVE" | translate }} </label>
     </button>
   </div>
 </div>

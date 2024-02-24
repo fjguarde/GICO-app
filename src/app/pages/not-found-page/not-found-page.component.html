@@ -32,7 +32,9 @@
         <path d="M3,11h39V3H3V11z M5,5h35v4H5V5z" />
       </g>
     </svg>
-    <h1>Page Not Found</h1>
+    <h1>{{ "COMMON.PAGE_NOT_FOUND" | translate }}</h1>
   </div>
-  <button class="primary-button button" [routerLink]="['/']">Go home</button>
+  <button class="primary-button button p-button button-raised" [routerLink]="['/']">
+    {{ "COMMON.GO_HOME" | translate }}
+  </button>
 </div>

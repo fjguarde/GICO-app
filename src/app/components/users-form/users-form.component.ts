@@ -9,11 +9,12 @@ import {
 import { User } from '@models/user';
 import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
 import { ErrorMessagesComponent } from '@components/error-messages/error-messages.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'gico-users-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ErrorMessagesComponent],
+  imports: [CommonModule, ReactiveFormsModule, ErrorMessagesComponent, TranslateModule],
   templateUrl: './users-form.component.html',
   styleUrls: ['./users-form.component.scss'],
 })

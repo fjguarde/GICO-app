@@ -7,11 +7,11 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
-      <th pSortableColumn="firstName">First name<p-sortIcon field="firstName"></p-sortIcon></th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Actions</th>
+      <th pSortableColumn="id"> {{'USERS.LIST.ID' | translate}} <p-sortIcon field="id"></p-sortIcon></th>
+      <th pSortableColumn="firstName">{{'USERS.LIST.FIRST_NAME' | translate}}<p-sortIcon field="firstName"></p-sortIcon></th>
+      <th>{{'USERS.LIST.LAST_NAME' | translate}}</th>
+      <th>{{'USERS.LIST.EMAIL' | translate}}</th>
+      <th>{{'COMMON.ACTIONS' | translate}}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-user>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserTableAction } from '@models/table-action';
+import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
@@ -9,7 +10,7 @@ const PRIME_NG_MODULES = [TableModule, TooltipModule, ButtonModule];
 @Component({
   selector: 'gico-users-table',
   standalone: true,
-  imports: [PRIME_NG_MODULES],
+  imports: [PRIME_NG_MODULES, TranslateModule],
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss'],
 })
