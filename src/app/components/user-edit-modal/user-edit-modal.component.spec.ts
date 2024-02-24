@@ -3,9 +3,7 @@ import { UserEditModalComponent } from './user-edit-modal.component';
 import { UsersFormComponent } from '@components/users-form/users-form.component';
 import { UsersService } from '@services/users.service';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { of } from 'rxjs';
-import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
-import { User } from '@models/user';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('UserEditModalComponent', () => {
   let component: UserEditModalComponent;
@@ -18,7 +16,9 @@ describe('UserEditModalComponent', () => {
   beforeEach(waitForAsync(() => {
     usersServiceSpy = jasmine.createSpyObj('UsersService', ['putUser']);
     dialogRefSpy = jasmine.createSpyObj('DynamicDialogRef', ['close']);
-    dialogConfigSpy = jasmine.createSpyObj('DynamicDialogConfig', [], { data: { user: {} } });
+    dialogConfigSpy = jasmine.createSpyObj('DynamicDialogConfig', [], {
+      data: { user: {} },
+    });
 
     TestBed.configureTestingModule({
       providers: [
@@ -26,9 +26,12 @@ describe('UserEditModalComponent', () => {
         { provide: DynamicDialogRef, useValue: dialogRefSpy },
         { provide: DynamicDialogConfig, useValue: dialogConfigSpy },
       ],
-      imports: [UsersFormComponent, UserEditModalComponent],
-    })
-    .compileComponents();
+      imports: [
+        UsersFormComponent,
+        UserEditModalComponent,
+        TranslateModule.forRoot(),
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -43,8 +46,8 @@ describe('UserEditModalComponent', () => {
   it('should render the form component', () => {
     fixture.detectChanges();
 
-    const usersFormComponent = fixture.nativeElement.querySelector('gico-users-form');
+    const usersFormComponent =
+      fixture.nativeElement.querySelector('gico-users-form');
     expect(usersFormComponent).toBeTruthy();
   });
-
 });

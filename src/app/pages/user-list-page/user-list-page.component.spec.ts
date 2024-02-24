@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserListPageComponent } from './user-list-page.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('UserListPageComponent', () => {
   let component: UserListPageComponent;
@@ -8,7 +9,7 @@ describe('UserListPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [UserListPageComponent]
+      imports: [UserListPageComponent, TranslateModule.forRoot()],
     });
     fixture = TestBed.createComponent(UserListPageComponent);
     component = fixture.componentInstance;

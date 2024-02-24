@@ -1,10 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, Validators, FormGroup, FormControl } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  Validators,
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 import { UsersFormComponent } from './users-form.component';
 import { User } from '@models/user';
 import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
 import { ErrorMessagesComponent } from '@components/error-messages/error-messages.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('UsersFormComponent', () => {
   let component: UsersFormComponent;
@@ -12,15 +18,25 @@ describe('UsersFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule, ReactiveFormsModule, UsersFormComponent, ErrorMessagesComponent]
+      imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        UsersFormComponent,
+        ErrorMessagesComponent,
+        TranslateModule.forRoot(),
+      ],
     });
 
     fixture = TestBed.createComponent(UsersFormComponent);
     component = fixture.componentInstance;
 
     // Mock Input values
-    component.user = {id: '99', firstName: 'Francisco', lastName: 'Guarde', email: 'fjguarde@gmail.com'} as User;
-
+    component.user = {
+      id: '99',
+      firstName: 'Francisco',
+      lastName: 'Guarde',
+      email: 'fjguarde@gmail.com',
+    } as User;
   });
 
   it('should create', () => {
@@ -40,7 +56,9 @@ describe('UsersFormComponent', () => {
 
     component.submit(component.formGroup);
 
-    expect(component.onCreate.emit).toHaveBeenCalledOnceWith(component.formGroup.getRawValue());
+    expect(component.onCreate.emit).toHaveBeenCalledOnceWith(
+      component.formGroup.getRawValue()
+    );
   });
 
   it('should emit onEdit event on submit in edit mode', () => {
@@ -51,7 +69,9 @@ describe('UsersFormComponent', () => {
 
     component.submit(component.formGroup);
 
-    expect(component.onEdit.emit).toHaveBeenCalledOnceWith(component.formGroup.getRawValue());
+    expect(component.onEdit.emit).toHaveBeenCalledOnceWith(
+      component.formGroup.getRawValue()
+    );
   });
 
   it('should emit onCancel event on cancel', () => {

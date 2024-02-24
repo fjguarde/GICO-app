@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersTableComponent } from './users-table.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('UsersTableComponent', () => {
   let component: UsersTableComponent;
@@ -8,7 +9,7 @@ describe('UsersTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [UsersTableComponent]
+      imports: [UsersTableComponent, TranslateModule.forRoot()],
     });
     fixture = TestBed.createComponent(UsersTableComponent);
     component = fixture.componentInstance;
