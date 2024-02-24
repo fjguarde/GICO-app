@@ -26,12 +26,12 @@ export class UserEditModalComponent {
 
     public editUser(user: User): void {
       this.usersService.putUser(user.id, user).subscribe(()=> {
-        this.closeModal()
+        this.closeModal(user.id)
       })
     }
 
-    public closeModal(): void {
-      this.ref.close()
+    public closeModal(userId?: string): void {
+      this.ref.close(userId)
     }
 
 }

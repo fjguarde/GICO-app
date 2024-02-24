@@ -116,13 +116,15 @@ export class UserListPageComponent implements OnInit {
       },
       data: { user },
     });
-    this.ref.onClose.pipe(take(1)).subscribe(() => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: this.translateService.instant('USERS.ACTIONS.EDITED'),
-      });
-      this.getUsers();
+    this.ref.onClose.pipe(take(1)).subscribe((resp) => {
+      if (resp) { 
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: this.translateService.instant('USERS.ACTIONS.EDITED'),
+        });
+        this.getUsers();
+      }
     });
   }
 
