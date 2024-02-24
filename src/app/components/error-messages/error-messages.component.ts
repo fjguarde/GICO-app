@@ -29,7 +29,7 @@ export class ErrorMessagesComponent {
         if (this.control.errors.hasOwnProperty(key)) {
           switch (key) {
             case 'required':
-              messages.push('Field required');
+              messages.push('Required Field');
               break;
             case 'minlength':
               messages.push(`At least ${this.control.errors['minlength'].requiredLength} characters`);
