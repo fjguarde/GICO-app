@@ -9,7 +9,11 @@ import { UserTableAction } from '@models/table-action';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
-import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import {
+  DialogService,
+  DynamicDialogModule,
+  DynamicDialogRef,
+} from 'primeng/dynamicdialog';
 import { UserEditModalComponent } from '@components/user-edit-modal/user-edit-modal.component';
 import { take } from 'rxjs';
 import { CardModule } from 'primeng/card';
@@ -25,7 +29,7 @@ const PRIME_NG_MODULES = [CardModule, DynamicDialogModule, ConfirmDialogModule];
     UsersTableComponent,
     UsersFormComponent,
     HttpClientModule,
-    TranslateModule
+    TranslateModule,
   ],
   providers: [UsersService, ConfirmationService, DialogService],
   templateUrl: './user-list-page.component.html',
@@ -40,7 +44,7 @@ export class UserListPageComponent implements OnInit {
     private readonly userService: UsersService,
     private readonly confirmationService: ConfirmationService,
     private readonly dialogService: DialogService,
-    private readonly translateService: TranslateService,
+    private readonly translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -74,7 +78,9 @@ export class UserListPageComponent implements OnInit {
 
   private confirmDelete(id: string): void {
     this.confirmationService.confirm({
-      message: this.translateService.instant('USERS.LIST.DELETE.CONFIRMATION').replace('#', id),
+      message: this.translateService
+        .instant('USERS.LIST.DELETE.CONFIRMATION')
+        .replace('#', id),
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: this.translateService.instant('COMMON.YES'),
@@ -94,18 +100,20 @@ export class UserListPageComponent implements OnInit {
 
   private openModalEditUser(user: User) {
     this.ref = this.dialogService.open(UserEditModalComponent, {
-      header: `Edit user ${user.id}`,
+      header: `${this.translateService.instant('USERS.FORM.EDIT.TITLE')} ${
+        user.id
+      }`,
       width: '30vw',
-      modal:true,
+      modal: true,
       breakpoints: {
-          '960px': '75vw',
-          '640px': '90vw'
+        '960px': '75vw',
+        '640px': '90vw',
       },
-      data: {user}
-  });
-  this.ref.onClose.pipe(take(1)).subscribe(()=> {
-    this.getUsers();
-  })
+      data: { user },
+    });
+    this.ref.onClose.pipe(take(1)).subscribe(() => {
+      this.getUsers();
+    });
   }
 
   private deleteUser(value: string) {
