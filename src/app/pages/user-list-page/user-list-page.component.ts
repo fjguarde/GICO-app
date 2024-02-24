@@ -6,7 +6,7 @@ import { UsersService } from '@services/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ACTION_TYPE } from 'src/app/enums/action-type.enum';
 import { UserTableAction } from '@models/table-action';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CommonModule } from '@angular/common';
 import {
@@ -18,7 +18,8 @@ import { UserEditModalComponent } from '@components/user-edit-modal/user-edit-mo
 import { take } from 'rxjs';
 import { CardModule } from 'primeng/card';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-const PRIME_NG_MODULES = [CardModule, DynamicDialogModule, ConfirmDialogModule];
+import { ToastModule } from 'primeng/toast';
+const PRIME_NG_MODULES = [CardModule, DynamicDialogModule, ConfirmDialogModule, ToastModule];
 
 @Component({
   selector: 'gico-user-list-page',
@@ -31,7 +32,7 @@ const PRIME_NG_MODULES = [CardModule, DynamicDialogModule, ConfirmDialogModule];
     HttpClientModule,
     TranslateModule,
   ],
-  providers: [UsersService, ConfirmationService, DialogService],
+  providers: [UsersService, ConfirmationService, DialogService, MessageService],
   templateUrl: './user-list-page.component.html',
   styleUrls: ['./user-list-page.component.scss'],
 })
@@ -44,7 +45,8 @@ export class UserListPageComponent implements OnInit {
     private readonly userService: UsersService,
     private readonly confirmationService: ConfirmationService,
     private readonly dialogService: DialogService,
-    private readonly translateService: TranslateService
+    private readonly translateService: TranslateService,
+    private readonly messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +61,6 @@ export class UserListPageComponent implements OnInit {
       case 'edit':
         this.openModalEditUser(user);
         break;
-
       default:
         break;
     }
@@ -71,7 +72,11 @@ export class UserListPageComponent implements OnInit {
       id: this.calculateNextId(this.userList),
     };
     this.userService.postUser(newUser).subscribe((userId) => {
-      //Show toast
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: this.translateService.instant('USERS.ACTIONS.CREATED'),
+      });
       this.getUsers();
     });
   }
@@ -112,13 +117,22 @@ export class UserListPageComponent implements OnInit {
       data: { user },
     });
     this.ref.onClose.pipe(take(1)).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: this.translateService.instant('USERS.ACTIONS.EDITED'),
+      });
       this.getUsers();
     });
   }
 
   private deleteUser(value: string) {
     this.userService.deleteUserById(value).subscribe((userId) => {
-      //Show toast
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: this.translateService.instant('USERS.ACTIONS.DELETED'),
+      });
       this.getUsers();
     });
   }

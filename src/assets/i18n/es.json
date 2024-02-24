@@ -34,6 +34,11 @@
             "EDIT": {
                 "TITLE": "Editar usuario"
             }
+        },
+        "ACTIONS": {
+            "CREATED": "El usuario ha sido creado",
+            "EDITED": "El usuario ha sido modificado",
+            "DELETED": "El usuario ha sido eliminado"
         }
     }
 }
